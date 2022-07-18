@@ -2,6 +2,8 @@ package com.example.demo.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "student")
@@ -14,19 +16,20 @@ public class StudentDTO {
     private Integer id;
 
     @Column(name = "user_name")
+    @Size(max = 30)
     private String userName;
 
     @Column(name = "email")
-    @Email
+    @Email(message = "Enter valid email")
     private String email;
 
     @Column(name = "mobile_number")
-
+    @Pattern(regexp = "^\\d{10}$",message = "Enter valid Mobile Number")
     private String mobileNumber;
 
     @Column(name = "age")
-
-    private Integer age;
+    @Pattern(regexp = "^\\d{2}$",message = "Enter valid Age")
+    private String age;
 
 
 
@@ -54,11 +57,11 @@ public class StudentDTO {
         this.mobileNumber = mobileNumber;
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
